@@ -334,6 +334,49 @@ textarea {
 }
 
 /* =========================================
+   Iivari
+   ========================================= */
+#iivari {
+  position: fixed;
+  bottom: 20px;
+  left: -260px;
+  width: 237px;
+  height: 130px;
+  background-image: url('../img/iivari-spritesheet-clean.png');
+  background-size: 1185px 390px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 999;
+}
+
+#iivari.iivari-walking {
+  animation: iivari-walk 0.5s steps(5) infinite;
+  pointer-events: none;
+}
+#iivari.iivari-sitting {
+  background-position: 0 -130px;
+  animation: iivari-bob 2.8s ease-in-out infinite;
+  pointer-events: auto;
+  cursor: pointer;
+}
+#iivari.iivari-flip {
+  transform: scaleX(-1);
+}
+#iivari.iivari-sitting.iivari-flip {
+  transform: scaleX(-1);
+}
+
+@keyframes iivari-walk {
+  from { background-position-x: 0; }
+  to   { background-position-x: -1185px; }
+}
+@keyframes iivari-bob {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-4px); }
+}
+
+/* =========================================
    Footer
    ========================================= */
 footer {

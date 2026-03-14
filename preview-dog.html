@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Iivari — preview</title>
+  <style>
+    body {
+      background: #ece7df;
+      height: 200vh;
+      margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      padding-top: 80px;
+      color: #3a3530;
+    }
+    .info {
+      text-align: center;
+      opacity: 0.5;
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    /*
+      Clean spritesheet: 2060 × 678 px
+      Layout: 5 columns × 3 rows = 15 frames
+      Frame size: 412 × 226 px
+      Display at 130px tall:
+        scale = 130/226 = 0.5752
+        → frame display: 237 × 130 px
+        → full bg: 1185 × 390 px
+    */
+    #dog {
+      position: fixed;
+      bottom: 20px;
+      left: -260px;
+      width: 237px;
+      height: 130px;
+      background-image: url('img/iivari-spritesheet-clean.png');
+      background-size: 1185px 390px;
+      background-position: 0 0;
+      background-repeat: no-repeat;
+    }
+
+    /* Walking animation: cycle through 5 frames of row 1 */
+    #dog.walking {
+      animation: walk-cycle 0.5s steps(5) infinite;
+    }
+    @keyframes walk-cycle {
+      from { background-position-x: 0; }
+      to   { background-position-x: -1185px; }  /* 5 × 237px */
+    }
+
+    /* Sitting: row 2 (y = -130px), still frame */
+    #dog.sitting {
+      background-position: 0 -130px;
+      animation: sit-bob 2.8s ease-in-out infinite;
+    }
+    @keyframes sit-bob {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-4px); }
+    }
+
+    /* Flip when going left */
+    #dog.flip {
+      transform: scaleX(-1);
+    }
+    #dog.sitting.flip {
+      transform: scaleX(-1) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="info">
+    <p><strong>Iivari — preview</strong></p>
+    <p style="margin-top:8px; font-size:0.8rem">
+      Juoksee sisään → istuutuu → vie hiiri lähelle, se pakenee
+    </p>
+  </div>
+
+  <div id="dog"></div>
+
+  <script>
+    const dog = document.getElementById('dog');
+
+    let posX       = -260;
+    let targetX    = 0;
+    let speed      = 300;     // px/s
+    let state      = 'running'; // running | sitting | fleeing
+    let facingRight = true;
+    let lastTs     = null;
+
+    function pickRestSpot() {
+      return Math.floor(window.innerWidth * (0.15 + Math.random() * 0.55));
+    }
+
+    function setFacing(right) {
+      facingRight = right;
+      updateClasses();
+    }
+
+    function updateClasses() {
+      dog.className = '';
+      if (state === 'sitting') {
+        dog.classList.add('sitting');
+      } else {
+        dog.classList.add('walking');
+      }
+      if (!facingRight) dog.classList.add('flip');
+    }
+
+    // Start
+    posX    = -260;
+    targetX = pickRestSpot();
+    setFacing(true);
+    updateClasses();
+
+    function loop(ts) {
+      if (!lastTs) lastTs = ts;
+      const dt = Math.min((ts - lastTs) / 1000, 0.05);
+      lastTs = ts;
+
+      if (state === 'running' || state === 'fleeing') {
+        const dir  = targetX > posX ? 1 : -1;
+        const step = speed * dt;
+
+        if (Math.abs(targetX - posX) <= step) {
+          posX = targetX;
+          dog.style.left = posX + 'px';
+
+          if (state === 'fleeing') {
+            // Reappear from opposite side
+            if (facingRight) {
+              posX = window.innerWidth + 10;
+              setFacing(false);
+            } else {
+              posX = -260;
+              setFacing(true);
+            }
+            targetX = pickRestSpot();
+            state   = 'running';
+            speed   = 300;
+          } else {
+            state = 'sitting';
+          }
+          updateClasses();
+        } else {
+          posX += dir * step;
+          setFacing(dir > 0);
+          dog.style.left = posX + 'px';
+        }
+      }
+
+      requestAnimationFrame(loop);
+    }
+
+    requestAnimationFrame(loop);
+
+    // Cursor proximity
+    document.addEventListener('mousemove', (e) => {
+      if (state !== 'sitting') return;
+
+      const rect  = dog.getBoundingClientRect();
+      const dogCX = rect.left + rect.width / 2;
+      const dogCY = rect.top  + rect.height / 2;
+      const dist  = Math.hypot(e.clientX - dogCX, e.clientY - dogCY);
+
+      if (dist < 120) {
+        state = 'fleeing';
+        speed = 500;
+        // Flee away from cursor
+        if (e.clientX > dogCX) {
+          setFacing(false);
+          targetX = -110;
+        } else {
+          setFacing(true);
+          targetX = window.innerWidth + 10;
+        }
+        updateClasses();
+      }
+    });
+  </script>
+</body>
+</html>
