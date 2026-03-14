@@ -1,21 +1,21 @@
 /* =========================================
-   CSS Custom Properties — easy to restyle
-   when the card's visual identity is set
+   CSS Custom Properties
    ========================================= */
 :root {
-  --color-primary: #8a7560;
-  --color-accent: #c4a882;
-  --color-bg: #faf8f5;
-  --color-surface: #ffffff;
-  --color-text: #2c2c2c;
-  --color-text-muted: #7a7a7a;
-  --color-border: #e0d8cf;
+  --color-primary: #5c8599;
+  --color-accent: #9ec0d0;
+  --color-warm: #c8b8a8;
+  --color-bg: #ece7df;
+  --color-surface: #faf8f5;
+  --color-text: #3a3530;
+  --color-text-muted: #8a7f76;
+  --color-border: #d0c8bc;
 
   --font-heading: 'Playfair Display', serif;
+  --font-script: 'Great Vibes', cursive;
   --font-body: 'Lato', sans-serif;
 
-  --max-width: 760px;
-  --border-radius: 4px;
+  --max-width: 720px;
   --spacing: 2rem;
 }
 
@@ -80,8 +80,8 @@ nav {
 .nav-links a {
   color: var(--color-text-muted);
   text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: color 0.2s;
 }
@@ -92,38 +92,113 @@ nav {
 }
 
 /* =========================================
-   Hero
+   Hero — invitation card style
    ========================================= */
 .hero {
+  padding: 3rem var(--spacing) 3.5rem;
   text-align: center;
-  padding: 4rem var(--spacing) 3rem;
-  border-bottom: 1px solid var(--color-border);
 }
+
+.invite-frame {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem 3rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+/* Corner brackets */
+.corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+}
+.corner-tl { top: -1px;  left: -1px;  border-top:    2px solid var(--color-primary); border-left:  2px solid var(--color-primary); }
+.corner-tr { top: -1px;  right: -1px; border-top:    2px solid var(--color-primary); border-right: 2px solid var(--color-primary); }
+.corner-bl { bottom: -1px; left: -1px;  border-bottom: 2px solid var(--color-primary); border-left:  2px solid var(--color-primary); }
+.corner-br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--color-primary); border-right: 2px solid var(--color-primary); }
 
 .hero-names {
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
-  color: var(--color-primary);
   font-weight: 400;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  margin-bottom: 1.5rem;
 }
 
-.hero-ampersand {
-  color: var(--color-accent);
+.hero-name {
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.hero-and {
+  font-family: var(--font-script);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--color-primary);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+
+.hero-divider::before,
+.hero-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.hero-divider-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  flex-shrink: 0;
 }
 
 .hero-date {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
 .hero-location {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Subpage hero (title only) */
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* =========================================
@@ -141,17 +216,18 @@ section {
 
 h2 {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 400;
   color: var(--color-primary);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--color-border);
+  letter-spacing: 0.04em;
 }
 
 h3 {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 400;
   color: var(--color-text);
   margin-bottom: 0.5rem;
@@ -172,11 +248,12 @@ p {
 
 label {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
   margin-bottom: 0.4rem;
   color: var(--color-text);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 input[type="text"],
@@ -186,7 +263,7 @@ select {
   width: 100%;
   padding: 0.65rem 0.85rem;
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
+  border-radius: 0;
   background: var(--color-surface);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -199,7 +276,7 @@ input[type="email"]:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color: var(--color-accent);
+  border-color: var(--color-primary);
 }
 
 textarea {
@@ -218,6 +295,7 @@ textarea {
   align-items: center;
   gap: 0.4rem;
   font-weight: 400;
+  text-transform: none;
   cursor: pointer;
 }
 
@@ -229,14 +307,14 @@ textarea {
 
 .btn {
   display: inline-block;
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 2.5rem;
   background-color: var(--color-primary);
   color: #fff;
   border: none;
-  border-radius: var(--border-radius);
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -250,11 +328,9 @@ textarea {
   cursor: not-allowed;
 }
 
-/* Form status messages */
 .form-status {
   margin-top: 1rem;
   padding: 0.75rem 1rem;
-  border-radius: var(--border-radius);
   font-size: 0.95rem;
   display: none;
 }
@@ -274,12 +350,11 @@ textarea {
 }
 
 /* =========================================
-   Info cards (travel page)
+   Info cards
    ========================================= */
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
 }
@@ -296,6 +371,7 @@ footer {
   padding: 2rem var(--spacing);
   font-size: 0.85rem;
   color: var(--color-text-muted);
+  letter-spacing: 0.06em;
   border-top: 1px solid var(--color-border);
   margin-top: 2rem;
 }
@@ -311,6 +387,10 @@ footer {
 
   .nav-links {
     gap: 1rem;
+  }
+
+  .invite-frame {
+    padding: 2.5rem 1.5rem 2rem;
   }
 
   .radio-group {

@@ -7,7 +7,9 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(gh repo:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "Bash(gh api:*)",
+      "Bash(host wedding.sopaset.fi)"
     ]
   }
 }
