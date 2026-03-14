@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" width="900" height="220">
+
+  <!-- Main arching branch -->
+  <path d="M100,220 Q250,130 400,80 Q550,130 800,220" stroke="#7a9060" stroke-width="1.2" fill="none" opacity="0.6"/>
+
+  <!-- === LEFT SIDE === -->
+
+  <!-- Far left large leaves -->
+  <g transform="translate(148,175) rotate(-50)">
+    <path d="M0,0 C-9,-14 -7,-32 0,-44 C7,-32 9,-14 0,0" fill="#3a5c34"/>
+    <line x1="0" y1="0" x2="0" y2="-44" stroke="#2d4828" stroke-width="0.7"/>
+  </g>
+  <g transform="translate(118,185) rotate(-65)">
+    <path d="M0,0 C-8,-12 -6,-28 0,-38 C6,-28 8,-12 0,0" fill="#4a6b40" opacity="0.9"/>
+  </g>
+  <g transform="translate(172,185) rotate(-40)">
+    <path d="M0,0 C-7,-11 -6,-25 0,-34 C6,-25 7,-11 0,0" fill="#3a5c34" opacity="0.85"/>
+  </g>
+
+  <!-- Left mid leaves -->
+  <g transform="translate(248,145) rotate(-30)">
+    <path d="M0,0 C-11,-17 -9,-38 0,-52 C9,-38 11,-17 0,0" fill="#3a5c34"/>
+    <line x1="0" y1="0" x2="0" y2="-52" stroke="#2d4828" stroke-width="0.7"/>
+  </g>
+  <g transform="translate(225,158) rotate(-50)">
+    <path d="M0,0 C-8,-13 -7,-30 0,-42 C7,-30 8,-13 0,0" fill="#4a6b40"/>
+  </g>
+  <g transform="translate(270,148) rotate(-15)">
+    <path d="M0,0 C-7,-11 -5,-26 0,-36 C5,-26 7,-11 0,0" fill="#567548" opacity="0.8"/>
+  </g>
+
+  <!-- Left small flower stems -->
+  <path d="M298,145 Q290,120 288,98" stroke="#7a9060" stroke-width="1" fill="none"/>
+  <path d="M298,145 Q278,118 272,100" stroke="#7a9060" stroke-width="1" fill="none"/>
+
+  <!-- Left flower A -->
+  <g transform="translate(288,93)">
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#ede5d5" transform="rotate(0)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#e8e0cf" transform="rotate(60)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#ede5d5" transform="rotate(120)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#e8e0cf" transform="rotate(180)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#ede5d5" transform="rotate(240)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#e8e0cf" transform="rotate(300)"/>
+    <circle r="9" fill="#c8a050"/>
+    <circle r="5" fill="#d4b060"/>
+  </g>
+
+  <!-- Left flower B (smaller) -->
+  <g transform="translate(272,96)">
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#f0ece2" transform="rotate(0)"/>
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#ede8de" transform="rotate(72)"/>
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#f0ece2" transform="rotate(144)"/>
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#ede8de" transform="rotate(216)"/>
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#f0ece2" transform="rotate(288)"/>
+    <circle r="7" fill="#c09848"/>
+  </g>
+
+  <!-- Left berries -->
+  <path d="M236,158 Q228,165 222,172" stroke="#7a9060" stroke-width="0.9" fill="none"/>
+  <circle cx="220" cy="174" r="4.5" fill="#8a6255"/>
+  <circle cx="228" cy="170" r="3.5" fill="#7a5548"/>
+  <circle cx="215" cy="180" r="3.5" fill="#8a6255"/>
+  <circle cx="225" cy="179" r="4" fill="#7a5548"/>
+
+  <!-- === CENTER LARGE FLOWER === -->
+  <g transform="translate(450,68)">
+    <!-- outer petals -->
+    <path d="M0,-26 C10,-18 10,18 0,26 C-10,18 -10,-18 0,-26" fill="#ede5d5" transform="rotate(0)"/>
+    <path d="M0,-26 C10,-18 10,18 0,26 C-10,18 -10,-18 0,-26" fill="#e5dcc8" transform="rotate(45)"/>
+    <path d="M0,-26 C10,-18 10,18 0,26 C-10,18 -10,-18 0,-26" fill="#ede5d5" transform="rotate(90)"/>
+    <path d="M0,-26 C10,-18 10,18 0,26 C-10,18 -10,-18 0,-26" fill="#e5dcc8" transform="rotate(135)"/>
+    <path d="M0,-26 C10,-18 10,18 0,26 C-10,18 -10,-18 0,-26" fill="#ede5d5" transform="rotate(180)"/>
+    <path d="M0,-26 C10,-18 10,18 0,26 C-10,18 -10,-18 0,-26" fill="#e5dcc8" transform="rotate(225)"/>
+    <path d="M0,-26 C10,-18 10,18 0,26 C-10,18 -10,-18 0,-26" fill="#ede5d5" transform="rotate(270)"/>
+    <path d="M0,-26 C10,-18 10,18 0,26 C-10,18 -10,-18 0,-26" fill="#e5dcc8" transform="rotate(315)"/>
+    <!-- inner petals -->
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#f5f0e5" transform="rotate(22)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#f0ebe0" transform="rotate(67)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#f5f0e5" transform="rotate(112)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#f0ebe0" transform="rotate(157)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#f5f0e5" transform="rotate(202)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#f0ebe0" transform="rotate(247)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#f5f0e5" transform="rotate(292)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#f0ebe0" transform="rotate(337)"/>
+    <!-- center -->
+    <circle r="11" fill="#c8a050"/>
+    <circle r="7" fill="#d4b060"/>
+    <circle r="3" fill="#e0c070"/>
+  </g>
+
+  <!-- Center side leaves -->
+  <g transform="translate(400,110) rotate(-20)">
+    <path d="M0,0 C-10,-16 -8,-36 0,-50 C8,-36 10,-16 0,0" fill="#3a5c34"/>
+    <line x1="0" y1="0" x2="0" y2="-50" stroke="#2d4828" stroke-width="0.7"/>
+  </g>
+  <g transform="translate(502,110) rotate(20)">
+    <path d="M0,0 C-10,-16 -8,-36 0,-50 C8,-36 10,-16 0,0" fill="#3a5c34"/>
+    <line x1="0" y1="0" x2="0" y2="-50" stroke="#2d4828" stroke-width="0.7"/>
+  </g>
+
+  <!-- === RIGHT SIDE (mirror of left) === -->
+
+  <!-- Right small flower stems -->
+  <path d="M602,145 Q610,120 612,98" stroke="#7a9060" stroke-width="1" fill="none"/>
+  <path d="M602,145 Q622,118 628,100" stroke="#7a9060" stroke-width="1" fill="none"/>
+
+  <!-- Right flower A -->
+  <g transform="translate(612,93)">
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#ede5d5" transform="rotate(0)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#e8e0cf" transform="rotate(60)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#ede5d5" transform="rotate(120)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#e8e0cf" transform="rotate(180)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#ede5d5" transform="rotate(240)"/>
+    <path d="M0,-18 C7,-12 7,12 0,18 C-7,12 -7,-12 0,-18" fill="#e8e0cf" transform="rotate(300)"/>
+    <circle r="9" fill="#c8a050"/>
+    <circle r="5" fill="#d4b060"/>
+  </g>
+
+  <!-- Right flower B -->
+  <g transform="translate(628,96)">
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#f0ece2" transform="rotate(0)"/>
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#ede8de" transform="rotate(72)"/>
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#f0ece2" transform="rotate(144)"/>
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#ede8de" transform="rotate(216)"/>
+    <path d="M0,-13 C5,-8 5,8 0,13 C-5,8 -5,-8 0,-13" fill="#f0ece2" transform="rotate(288)"/>
+    <circle r="7" fill="#c09848"/>
+  </g>
+
+  <!-- Right mid leaves -->
+  <g transform="translate(652,145) rotate(30)">
+    <path d="M0,0 C-11,-17 -9,-38 0,-52 C9,-38 11,-17 0,0" fill="#3a5c34"/>
+    <line x1="0" y1="0" x2="0" y2="-52" stroke="#2d4828" stroke-width="0.7"/>
+  </g>
+  <g transform="translate(675,158) rotate(50)">
+    <path d="M0,0 C-8,-13 -7,-30 0,-42 C7,-30 8,-13 0,0" fill="#4a6b40"/>
+  </g>
+  <g transform="translate(630,148) rotate(15)">
+    <path d="M0,0 C-7,-11 -5,-26 0,-36 C5,-26 7,-11 0,0" fill="#567548" opacity="0.8"/>
+  </g>
+
+  <!-- Right berries -->
+  <path d="M664,158 Q672,165 678,172" stroke="#7a9060" stroke-width="0.9" fill="none"/>
+  <circle cx="680" cy="174" r="4.5" fill="#8a6255"/>
+  <circle cx="672" cy="170" r="3.5" fill="#7a5548"/>
+  <circle cx="685" cy="180" r="3.5" fill="#8a6255"/>
+  <circle cx="675" cy="179" r="4" fill="#7a5548"/>
+
+  <!-- Far right large leaves -->
+  <g transform="translate(752,175) rotate(50)">
+    <path d="M0,0 C-9,-14 -7,-32 0,-44 C7,-32 9,-14 0,0" fill="#3a5c34"/>
+    <line x1="0" y1="0" x2="0" y2="-44" stroke="#2d4828" stroke-width="0.7"/>
+  </g>
+  <g transform="translate(782,185) rotate(65)">
+    <path d="M0,0 C-8,-12 -6,-28 0,-38 C6,-28 8,-12 0,0" fill="#4a6b40" opacity="0.9"/>
+  </g>
+  <g transform="translate(728,185) rotate(40)">
+    <path d="M0,0 C-7,-11 -6,-25 0,-34 C6,-25 7,-11 0,0" fill="#3a5c34" opacity="0.85"/>
+  </g>
+
+</svg>
