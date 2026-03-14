@@ -364,7 +364,7 @@ textarea {
   transform: scaleX(-1);
 }
 #iivari.iivari-sitting.iivari-flip {
-  transform: scaleX(-1);
+  animation: iivari-bob-flip 2.8s ease-in-out infinite;
 }
 
 @keyframes iivari-walk {
@@ -374,6 +374,10 @@ textarea {
 @keyframes iivari-bob {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-4px); }
+}
+@keyframes iivari-bob-flip {
+  0%,100% { transform: scaleX(-1) translateY(0); }
+  50%     { transform: scaleX(-1) translateY(-4px); }
 }
 
 /* =========================================

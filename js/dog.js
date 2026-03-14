@@ -3,19 +3,34 @@ const IIVARI_ENABLED = true;
 // ─────────────────────────────────────────────────────────────────
 
 if (IIVARI_ENABLED) {
-  const dog = document.getElementById('iivari');
-  if (!dog) throw new Error('iivari element not found');
+  const dog  = document.getElementById('iivari');
+  const DOG_W         = 237;
+  const CONTENT_MAX_W = 720; // matches --max-width in CSS
 
-  let posX        = -260;
-  let targetX     = 0;
-  let speed       = 240;
-  let state       = 'running';
-  let facingRight = true;
-  let lastTs      = null;
-
-  function pickRestSpot() {
-    return Math.floor(window.innerWidth * (0.15 + Math.random() * 0.55));
+  // Left/right boundaries the dog respects
+  function getEdges() {
+    const cw = Math.min(CONTENT_MAX_W, window.innerWidth);
+    const cl = (window.innerWidth - cw) / 2;
+    return {
+      contentLeft:  cl - DOG_W,              // rightmost posX on left side
+      contentRight: cl + cw,                 // leftmost  posX on right side
+      screenRight:  window.innerWidth - DOG_W
+    };
   }
+
+  // Corner positions (near screen edges, outside content)
+  function getCorner() {
+    const { screenRight } = getEdges();
+    return side === 'left' ? 20 : screenRight - 20;
+  }
+
+  let posX    = -DOG_W - 10;
+  let targetX = 20;
+  let speed   = 240;
+  let state   = 'running'; // 'running' | 'sitting' | 'fleeing'
+  let side    = 'left';    // which margin
+  let facingRight = true;
+  let lastTs  = null;
 
   function setFacing(right) {
     facingRight = right;
@@ -28,43 +43,61 @@ if (IIVARI_ENABLED) {
     if (!facingRight) dog.classList.add('iivari-flip');
   }
 
-  posX    = -260;
-  targetX = pickRestSpot();
-  setFacing(true);
-  updateClasses();
+  function exitAndReenter(newSide) {
+    side    = newSide;
+    posX    = newSide === 'left' ? -DOG_W - 10 : window.innerWidth + 10;
+    targetX = getCorner();
+    state   = 'running';
+    speed   = 240;
+    setFacing(newSide === 'left'); // face inward when entering
+    dog.style.left = posX + 'px';
+  }
+
+  // Start: enter from left
+  exitAndReenter('left');
 
   function loop(ts) {
     if (!lastTs) lastTs = ts;
     const dt = Math.min((ts - lastTs) / 1000, 0.05);
     lastTs = ts;
 
-    if (state === 'running' || state === 'fleeing') {
-      const dir  = targetX > posX ? 1 : -1;
-      const step = speed * dt;
+    if (state !== 'sitting') {
+      const { contentLeft, contentRight, screenRight } = getEdges();
+      const step    = speed * dt;
+      const moveDir = targetX > posX ? 1 : -1;
+      let   nextX   = posX + moveDir * step;
 
-      if (Math.abs(targetX - posX) <= step) {
-        posX = targetX;
+      setFacing(moveDir > 0);
+
+      // ── Content boundary bounce ──────────────────────────────
+      if (side === 'left' && nextX > contentLeft) {
+        nextX   = contentLeft;
+        targetX = state === 'fleeing' ? -DOG_W - 10 : getCorner();
+      } else if (side === 'right' && nextX < contentRight) {
+        nextX   = contentRight;
+        targetX = state === 'fleeing' ? window.innerWidth + 10 : getCorner();
+      }
+
+      // ── Screen edge exit ─────────────────────────────────────
+      if (nextX <= -DOG_W) {
+        exitAndReenter('right');
+        return;
+      }
+      if (nextX >= window.innerWidth) {
+        exitAndReenter('left');
+        return;
+      }
+
+      posX = nextX;
+      dog.style.left = posX + 'px';
+
+      // ── Arrived at target ────────────────────────────────────
+      if (state === 'running' && Math.abs(posX - targetX) <= step) {
+        posX    = targetX;
         dog.style.left = posX + 'px';
-
-        if (state === 'fleeing') {
-          if (facingRight) {
-            posX = window.innerWidth + 10;
-            setFacing(false);
-          } else {
-            posX = -260;
-            setFacing(true);
-          }
-          targetX = pickRestSpot();
-          state   = 'running';
-          speed   = 240;
-        } else {
-          state = 'sitting';
-        }
+        state   = 'sitting';
+        setFacing(side === 'left'); // face inward while sitting
         updateClasses();
-      } else {
-        posX += dir * step;
-        setFacing(dir > 0);
-        dog.style.left = posX + 'px';
       }
     }
 
@@ -73,16 +106,24 @@ if (IIVARI_ENABLED) {
 
   requestAnimationFrame(loop);
 
+  // ── Cursor proximity ─────────────────────────────────────────
   document.addEventListener('mousemove', (e) => {
     if (state !== 'sitting') return;
     const rect  = dog.getBoundingClientRect();
-    const dogCX = rect.left + rect.width / 2;
-    const dogCY = rect.top  + rect.height / 2;
+    const dogCX = rect.left + DOG_W / 2;
+    const dogCY = rect.top  + 65;
+
     if (Math.hypot(e.clientX - dogCX, e.clientY - dogCY) < 120) {
-      state = 'fleeing';
-      speed = 500;
-      if (e.clientX > dogCX) { setFacing(false); targetX = -270; }
-      else                   { setFacing(true);  targetX = window.innerWidth + 10; }
+      state  = 'fleeing';
+      speed  = 500;
+      // Flee toward nearest screen edge (away from content)
+      if (side === 'left') {
+        targetX = -DOG_W - 10;
+        setFacing(false);
+      } else {
+        targetX = window.innerWidth + 10;
+        setFacing(true);
+      }
       updateClasses();
     }
   });
