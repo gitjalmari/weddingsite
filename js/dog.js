@@ -26,7 +26,7 @@ if (IIVARI_ENABLED) {
     return side === 'left' ? 20 : screenRight - 20;
   }
 
-  let posX    = -DOG_W - 10;
+  let posX    = -DOG_W_WALK - 10;
   let targetX = 20;
   let speed   = 240;
   let state   = 'running'; // 'running' | 'sitting' | 'fleeing'
@@ -67,7 +67,7 @@ if (IIVARI_ENABLED) {
 
   function exitAndReenter(newSide) {
     side    = newSide;
-    posX    = newSide === 'left' ? -DOG_W - 10 : window.innerWidth + 10;
+    posX    = newSide === 'left' ? -DOG_W_WALK - 10 : window.innerWidth + 10;
     targetX = getCorner();
     state   = 'running';
     speed   = 240;
@@ -94,14 +94,14 @@ if (IIVARI_ENABLED) {
       // ── Content boundary bounce ──────────────────────────────
       if (side === 'left' && nextX > contentLeft) {
         nextX   = contentLeft;
-        targetX = state === 'fleeing' ? -DOG_W - 10 : getCorner();
+        targetX = state === 'fleeing' ? -DOG_W_WALK - 10 : getCorner();
       } else if (side === 'right' && nextX < contentRight) {
         nextX   = contentRight;
         targetX = state === 'fleeing' ? window.innerWidth + 10 : getCorner();
       }
 
       // ── Screen edge exit ─────────────────────────────────────
-      if (nextX <= -DOG_W) {
+      if (nextX <= -DOG_W_WALK) {
         exitAndReenter('right');
         requestAnimationFrame(loop);
         return;
@@ -135,7 +135,7 @@ if (IIVARI_ENABLED) {
   document.addEventListener('mousemove', (e) => {
     if (state !== 'sitting') return;
     const rect  = dog.getBoundingClientRect();
-    const dogCX = rect.left + DOG_W / 2;
+    const dogCX = rect.left + DOG_W_WALK / 2;
     const dogCY = rect.top  + 65;
 
     if (Math.hypot(e.clientX - dogCX, e.clientY - dogCY) < 120) {
@@ -145,7 +145,7 @@ if (IIVARI_ENABLED) {
       speed  = 500;
       // Flee toward nearest screen edge (away from content)
       if (side === 'left') {
-        targetX = -DOG_W - 10;
+        targetX = -DOG_W_WALK - 10;
         setFacing(false);
       } else {
         targetX = window.innerWidth + 10;
