@@ -81,10 +81,12 @@ if (IIVARI_ENABLED) {
       // ── Screen edge exit ─────────────────────────────────────
       if (nextX <= -DOG_W) {
         exitAndReenter('right');
+        requestAnimationFrame(loop);
         return;
       }
       if (nextX >= window.innerWidth) {
         exitAndReenter('left');
+        requestAnimationFrame(loop);
         return;
       }
 
