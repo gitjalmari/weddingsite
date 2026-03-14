@@ -4,16 +4,18 @@ const IIVARI_ENABLED = true;
 
 if (IIVARI_ENABLED) {
   const dog  = document.getElementById('iivari');
-  const DOG_W         = 237;
+  const DOG_W_WALK    = 237; // width when walking
+  const DOG_W_SIT     = 171; // width when sitting
   const CONTENT_MAX_W = 720; // matches --max-width in CSS
 
   // Left/right boundaries the dog respects
   function getEdges() {
     const cw = Math.min(CONTENT_MAX_W, window.innerWidth);
     const cl = (window.innerWidth - cw) / 2;
+    const DOG_W = state === 'sitting' ? DOG_W_SIT : DOG_W_WALK;
     return {
-      contentLeft:  cl - DOG_W,              // rightmost posX on left side
-      contentRight: cl + cw,                 // leftmost  posX on right side
+      contentLeft:  cl - DOG_W,
+      contentRight: cl + cw,
       screenRight:  window.innerWidth - DOG_W
     };
   }
@@ -42,6 +44,26 @@ if (IIVARI_ENABLED) {
     dog.classList.add(state === 'sitting' ? 'iivari-sitting' : 'iivari-walking');
     if (!facingRight) dog.classList.add('iivari-flip');
   }
+
+  // ── Random tail wag ──────────────────────────────────────────
+  let wagTimeout = null;
+
+  function scheduleWag() {
+    clearTimeout(wagTimeout);
+    wagTimeout = setTimeout(() => {
+      if (state !== 'sitting') { scheduleWag(); return; }
+      dog.classList.remove('iivari-wagging');
+      void dog.offsetWidth; // force reflow to restart animation
+      dog.classList.add('iivari-wagging');
+    }, 1500 + Math.random() * 4000);
+  }
+
+  dog.addEventListener('animationend', (e) => {
+    if (e.animationName === 'iivari-wag-cycle') {
+      dog.classList.remove('iivari-wagging');
+      scheduleWag();
+    }
+  });
 
   function exitAndReenter(newSide) {
     side    = newSide;
@@ -100,6 +122,7 @@ if (IIVARI_ENABLED) {
         state   = 'sitting';
         setFacing(side === 'left'); // face inward while sitting
         updateClasses();
+        scheduleWag();
       }
     }
 
@@ -116,6 +139,8 @@ if (IIVARI_ENABLED) {
     const dogCY = rect.top  + 65;
 
     if (Math.hypot(e.clientX - dogCX, e.clientY - dogCY) < 120) {
+      clearTimeout(wagTimeout);
+      dog.classList.remove('iivari-wagging');
       state  = 'fleeing';
       speed  = 500;
       // Flee toward nearest screen edge (away from content)

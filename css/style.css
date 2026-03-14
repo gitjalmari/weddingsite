@@ -355,7 +355,9 @@ textarea {
   pointer-events: none;
 }
 #iivari.iivari-sitting {
-  background-position: 0 -130px;
+  background-image: url('../img/iivari-sitting-clean.png');
+  background-size: 855px 130px;
+  background-position: 0 0;
   animation: iivari-bob 2.8s ease-in-out infinite;
   pointer-events: auto;
   cursor: pointer;
@@ -365,6 +367,14 @@ textarea {
 }
 #iivari.iivari-sitting.iivari-flip {
   animation: iivari-bob-flip 2.8s ease-in-out infinite;
+}
+#iivari.iivari-sitting.iivari-wagging {
+  animation: iivari-bob 2.8s ease-in-out infinite,
+             iivari-wag-cycle 0.55s steps(5) 1 forwards;
+}
+#iivari.iivari-sitting.iivari-flip.iivari-wagging {
+  animation: iivari-bob-flip 2.8s ease-in-out infinite,
+             iivari-wag-cycle 0.55s steps(5) 1 forwards;
 }
 
 @keyframes iivari-walk {
@@ -378,6 +388,10 @@ textarea {
 @keyframes iivari-bob-flip {
   0%,100% { transform: scaleX(-1) translateY(0); }
   50%     { transform: scaleX(-1) translateY(-4px); }
+}
+@keyframes iivari-wag-cycle {
+  from { background-position-x: 0; }
+  to   { background-position-x: -855px; }
 }
 
 /* =========================================
