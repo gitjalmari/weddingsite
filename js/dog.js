@@ -4,8 +4,8 @@ const IIVARI_ENABLED = true;
 
 if (IIVARI_ENABLED) {
   const dog  = document.getElementById('iivari');
-  const DOG_W_WALK    = 260; // width when walking
-  const DOG_W_SIT     = 171; // width when sitting
+  const DOG_W_WALK    = 300; // width when walking
+  const DOG_W_SIT     = 300; // width when sitting
   const CONTENT_MAX_W = 720; // matches --max-width in CSS
 
   // Left/right boundaries the dog respects
