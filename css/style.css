@@ -339,11 +339,11 @@ textarea {
 #iivari {
   position: fixed;
   bottom: 20px;
-  left: -260px;
-  width: 237px;
-  height: 130px;
+  left: -270px;
+  width: 260px;
+  height: 145px;
   background-image: url('../img/iivari-spritesheet-clean.png');
-  background-size: 1185px 390px;
+  background-size: 1300px 145px;
   background-position: 0 0;
   background-repeat: no-repeat;
   pointer-events: none;
@@ -379,7 +379,7 @@ textarea {
 
 @keyframes iivari-walk {
   from { background-position-x: 0; }
-  to   { background-position-x: -1185px; }
+  to   { background-position-x: -1300px; }
 }
 @keyframes iivari-bob {
   0%,100% { transform: translateY(0); }

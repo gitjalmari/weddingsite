@@ -4,7 +4,7 @@ const IIVARI_ENABLED = true;
 
 if (IIVARI_ENABLED) {
   const dog  = document.getElementById('iivari');
-  const DOG_W_WALK    = 237; // width when walking
+  const DOG_W_WALK    = 260; // width when walking
   const DOG_W_SIT     = 171; // width when sitting
   const CONTENT_MAX_W = 720; // matches --max-width in CSS
 
@@ -84,7 +84,7 @@ if (IIVARI_ENABLED) {
     lastTs = ts;
 
     if (state !== 'sitting') {
-      const { contentLeft, contentRight, screenRight } = getEdges();
+      const { contentLeft, contentRight } = getEdges();
       const step    = speed * dt;
       const moveDir = targetX > posX ? 1 : -1;
       let   nextX   = posX + moveDir * step;
