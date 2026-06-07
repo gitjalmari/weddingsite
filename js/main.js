@@ -83,7 +83,10 @@ if (form) {
         if (partyHint) partyHint.hidden = true;
         form.style.display = "none";
         statusEl.className = "form-status success";
-        statusEl.textContent = "Kiitos ilmoittautumisestasi!";
+        statusEl.textContent =
+          attendance === "Kyllä, osallistun"
+            ? "Kiitos ilmoittautumisestasi!"
+            : "Kiitos ilmoituksesta.";
       } else {
         throw new Error("Palvelinvirhe");
       }
