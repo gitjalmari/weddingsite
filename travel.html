@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Sopaset – Matkustajille</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="The Sopaset – Matkustajille" />
+    <meta property="og:description" content="Tietoa Kuopioon saapumisesta ja häiden käytännön järjestelyistä." />
+    <meta property="og:image" content="https://wedding.sopaset.fi/img/flowers2.png" />
+    <meta property="og:url" content="https://wedding.sopaset.fi/travel.html" />
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Josefin+Sans:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <header class="site-header site-header--sub">
+      <a href="index.html" class="site-header-brand">Pinja <span class="hero-and">&amp;</span> Jalmari</a>
+      <h1 class="subpage-title">Matkustajille</h1>
+      <p class="hero-date">Tietoa Kuopioon saapumisesta</p>
+    </header>
+
+    <nav>
+      <div class="nav-inner">
+        <ul class="nav-links">
+          <li><a href="index.html">Etusivu</a></li>
+          <li><a href="schedule.html">Aikataulu</a></li>
+          <li><a href="travel.html" class="active">Matkustajille</a></li>
+          <li><a href="info.html">Lisätietoja</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Accommodation -->
+      <section id="accommodation">
+        <h2>Majoitus</h2>
+        <p>Majoittuminen onnistuu kätevästi juhlapaikan kanssa saman katon alla.</p>
+        <div class="iban-option-b">
+          <p class="iban-label">Original Sokos Hotel Puijonsarvi</p>
+          <p class="iban-number"><a href="https://www.sokoshotels.fi/hotellit/kuopio/original-sokos-hotel-puijonsarvi" target="_blank" rel="noopener noreferrer">Varaa huone →</a></p>
+        </div>
+      </section>
+
+      <!-- Ceremony -->
+      <section id="ceremony">
+        <h2>Kirkko</h2>
+        <div class="iban-option-b">
+          <p class="iban-label">Kuopion Tuomiokirkko</p>
+          <p class="iban-number">Vuorikatu 17, 70100 Kuopio</p>
+          <p class="iban-number">Vihkiminen klo 13:30</p>
+        </div>
+      </section>
+
+      <!-- Venue -->
+      <section id="venue">
+        <h2>Juhlapaikka</h2>
+        <div class="iban-option-b">
+          <p class="iban-label">Kuopion Puikkari</p>
+          <p class="iban-number">Maaherrankatu 5, 70100 Kuopio</p>
+          <p class="iban-number">Hääjuhla klo 15:00</p>
+        </div>
+      </section>
+
+      <!-- Map -->
+      <section id="map">
+        <h2>Kartta</h2>
+
+        <div id="google-map" class="map-embed">
+          <p class="map-fallback">Kartta ei ole nyt ihan kartalla. Kokeile päivittää sivu.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>Pinja &amp; Jalmari &middot; 8.8.2026</p>
+    </footer>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDz5l5nY6F_cX62YyB930Ysk7ZEb3TNXlE&callback=initGoogleMap" async defer></script>
+    <script>
+      function initGoogleMap() {
+        const fallback = document.getElementById('google-map').querySelector('.map-fallback');
+        if (fallback) fallback.remove();
+        const map = new google.maps.Map(document.getElementById('google-map'), {
+          center: { lat: 62.89068, lng: 27.68611 },
+          zoom: 15,
+        });
+
+        const infoWindow = new google.maps.InfoWindow();
+
+        const kirkko = new google.maps.Marker({
+          position: { lat: 62.89103, lng: 27.68403 },
+          map,
+          title: 'Kuopion Tuomiokirkko',
+        });
+        kirkko.addListener('click', () => {
+          infoWindow.setContent('<strong>Kuopion Tuomiokirkko</strong><br>Vihkiminen klo 13:30');
+          infoWindow.open(map, kirkko);
+        });
+
+        const puikkari = new google.maps.Marker({
+          position: { lat: 62.89033, lng: 27.68819 },
+          map,
+          title: 'Kuopion Puikkari',
+        });
+        puikkari.addListener('click', () => {
+          infoWindow.setContent('<strong>Kuopion Puikkari</strong><br>Maaherrankatu 5<br>Hääjuhla klo 15:00');
+          infoWindow.open(map, puikkari);
+        });
+      }
+    </script>
+  </body>
+</html>

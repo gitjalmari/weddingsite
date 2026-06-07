@@ -1,0 +1,9 @@
+# Claude Code -paikalliset asetukset
+.claude/
+
+# Riippuvuudet
+node_modules/
+
+# Käyttöjärjestelmä
+.DS_Store
+Thumbs.db
